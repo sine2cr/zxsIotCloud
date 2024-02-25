@@ -1,13 +1,13 @@
 <p align="center">
     <a href="https://github.com/sine2cr/zxsIotCloud" target="_blank" rel="noopener noreferrer">
-        <h1>湘思物联网云</h1>
+        <h1 style="text-align: center">湘思物联网云</h1>
     </a>
 </p>
 
 <p align="center">
 <br />
 <a href="#">官网</a>
-<a href="https://github.com/sine2cr/zxsIotCloud/tree/main/doc">文档</a>
+<a href="https://github.com/sine2cr/zxsIotCloud/tree/master/doc">文档</a>
 </p>
 
 ------------------------------
