@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zxsIotCloud?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+    hikari:
+      poolName: zxsIotCloud_userBackend
+      maximumPoolSize: 10
+      minimumIdle: 1
+      idleTimeout: 600000
+      connectionTimeout: 30000
+#节点部署编号
+userCenter:
+  workerId: 1
+  centerId: 1
