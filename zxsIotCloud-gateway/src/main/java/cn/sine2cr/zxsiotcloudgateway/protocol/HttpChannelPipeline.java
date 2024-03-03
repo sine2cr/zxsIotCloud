@@ -13,7 +13,7 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
  * @Date 2024/2/20
  * @Mail sine2cr@163.com
  **/
-public class HttpChannelPipeline {
+public class HttpChannelPipeline implements CustomChannelPipeline{
 
 
     private HttpChannelPipeline() {

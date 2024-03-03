@@ -12,7 +12,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
  * @Date 2024/2/20
  * @Mail sine2cr@163.com
  **/
-public class WebsocketChannelPipeline {
+public class WebsocketChannelPipeline implements CustomChannelPipeline{
 
 
     private WebsocketChannelPipeline() {
