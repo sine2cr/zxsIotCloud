@@ -1,8 +1,8 @@
 package cn.sine2cr.zxsiotcloudgateway;
 
 
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.common.ErrorCode;
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.exception.BusinessException;
+import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
+import cn.sine2cr.zxsiotcloudcommon.exception.BusinessException;
 import cn.sine2cr.zxsiotcloudgateway.constant.ProtocolConstant;
 import cn.sine2cr.zxsiotcloudgateway.protocol.HttpChannelPipeline;
 import cn.sine2cr.zxsiotcloudgateway.protocol.WebsocketChannelPipeline;

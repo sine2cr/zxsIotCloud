@@ -1,7 +1,7 @@
 package cn.sine2cr.zxsiotcloudgateway.schedule;
 
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.model.vo.DeviceTypeVO;
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.service.InnerDeviceService;
+import cn.sine2cr.zxsiotcloudcommon.model.vo.DeviceTypeVO;
+import cn.sine2cr.zxsiotcloudcommon.service.InnerDeviceService;
 import cn.sine2cr.zxsiotcloudgateway.constant.RedisTypeConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;

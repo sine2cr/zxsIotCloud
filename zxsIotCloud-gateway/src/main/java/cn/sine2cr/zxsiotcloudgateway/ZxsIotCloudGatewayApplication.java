@@ -1,6 +1,7 @@
 package cn.sine2cr.zxsiotcloudgateway;
 
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.util.ComputerInfoUtil;
+
+import cn.sine2cr.zxsiotcloudcommon.util.ComputerInfoUtil;
 import cn.sine2cr.zxsiotcloudgateway.util.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;

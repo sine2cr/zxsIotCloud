@@ -1,9 +1,9 @@
 package cn.sine2cr.zxsiotcloudgateway.handler.http;
 
 
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.common.ErrorCode;
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.exception.BusinessException;
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.model.entity.DefaultTransducer;
+import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
+import cn.sine2cr.zxsiotcloudcommon.exception.BusinessException;
+import cn.sine2cr.zxsiotcloudcommon.model.entity.DefaultTransducer;
 import cn.sine2cr.zxsiotcloudgateway.constant.DeviceTypeConstant;
 import cn.sine2cr.zxsiotcloudgateway.service.RedisService;
 import cn.sine2cr.zxsiotcloudgateway.util.SpringContextUtil;
@@ -51,9 +51,7 @@ public class HttpReceiver extends ChannelInboundHandlerAdapter {
                 ctx.channel().writeAndFlush(HttpResponse.failResponse(ErrorCode.TRANSDUCER_DATA_ERROR.getMessage()));
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR);
             }
-            ctx.channel().writeAndFlush(
-                    HttpResponse.successResponse(
-                            "设备:"+defaultTransducer.getDeviceId() + " success"));
+           MessageSender.success(ctx);
         }
     }
 

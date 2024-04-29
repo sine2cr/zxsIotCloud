@@ -1,7 +1,7 @@
 package cn.sine2cr.zxsiotcloudgateway.service;
 
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.common.ErrorCode;
-import cn.sine2cr.zxsiotcloud.zxsiotcloudcommon.exception.BusinessException;
+import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
+import cn.sine2cr.zxsiotcloudcommon.exception.BusinessException;
 import cn.sine2cr.zxsiotcloudgateway.constant.RedisTypeConstant;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,8 @@ public class RedisService {
     public RedisTemplate<String, Object> redisObjectTemplate;
     @Resource
     public RedisTemplate<String, String> redisStringTemplate;
-
+// TODO: 2024/3/4 修改为一个中心Redis集群，维护缓存一致性，采用读穿的方式实现缓存一致性
+    // TODO: 2024/3/4 用户设备修改时如何维护缓存一致性业务
 
     /**
      * 在redis中获取设备类型

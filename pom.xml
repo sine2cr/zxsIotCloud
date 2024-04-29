@@ -25,7 +25,7 @@
     </developers>
 
     <modules>
-        <module>zxsIotCloud-userbackend</module>
+        <module>zxsIotCloud-web</module>
         <module>zxsIotCloud-common</module>
         <module>zxsIotCloud-gateway</module>
         <module>zxsIotCloud-core</module>
