@@ -21,6 +21,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account>
     @Resource
     AccountMapper accountMapper;
 
+
     @Override
     public boolean accountRegister(long accountId) {
         Account account = new Account();
@@ -33,7 +34,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account>
     public int deviceCount(Long accountId) {
         QueryWrapper<Account> accountQueryWrapper = new QueryWrapper<>();
         accountQueryWrapper.eq("account", accountId);
-        Account account = accountMapper.selectOne(accountQueryWrapper);
+        Account account =this.getOne(accountQueryWrapper,true);
         return account.getDeviceCount();
     }
 
@@ -49,7 +50,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account>
     public boolean updateInstanceCount(Long accountId, int num) {
         int count = this.deviceCount(accountId);
         UpdateWrapper<Account> accountUpdateWrapper = new UpdateWrapper<>();
-        accountUpdateWrapper.eq("account_id",accountId);
+        accountUpdateWrapper.eq("account",accountId);
         accountUpdateWrapper.set("instance_count",count+num);
         return this.update(accountUpdateWrapper);
     }
@@ -58,7 +59,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account>
     public boolean updateDeviceCount(Long accountId, int num) {
         int count = this.deviceCount(accountId);
         UpdateWrapper<Account> accountUpdateWrapper = new UpdateWrapper<>();
-        accountUpdateWrapper.eq("account_id",accountId);
+        accountUpdateWrapper.eq("account",accountId);
         accountUpdateWrapper.set("device_count",count+num);
         return this.update(accountUpdateWrapper);
     }

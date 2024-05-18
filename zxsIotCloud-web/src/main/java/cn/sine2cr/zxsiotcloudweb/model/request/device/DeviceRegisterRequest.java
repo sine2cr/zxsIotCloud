@@ -20,39 +20,23 @@ public class DeviceRegisterRequest implements Serializable {
     private Long account;
 
     /**
-     * 设备ID
-     */
-
-    private Long deviceId;
-
-    /**
      * 设备名称
      */
-
     private String name;
 
     /**
-     * 连接协议
+     * 设备指纹
      */
-    private String connectType;
+    private String fingerprint;
 
     /**
-     * 设备序列号
+     * 设备转发ip地址
      */
-    private String sn;
+    private String proxyIp;
 
     /**
-     * 设备mac地址
+     * 设备转发端口号
      */
-    private String mac;
+    private Integer proxyPort;
 
-    /**
-     * 设备ip地址
-     */
-    private String ip;
-
-    /**
-     * 设备端口
-     */
-    private Integer port;
 }

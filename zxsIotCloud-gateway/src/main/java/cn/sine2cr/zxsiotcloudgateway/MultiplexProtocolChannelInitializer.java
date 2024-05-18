@@ -15,6 +15,11 @@ import org.springframework.util.ResourceUtils;
  **/
 public class MultiplexProtocolChannelInitializer extends ChannelInitializer<SocketChannel> {
 
+    /**
+     * 初始化通道添加ssl解密和协议适配器
+     * @param socketChannel
+     * @throws Exception
+     */
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();

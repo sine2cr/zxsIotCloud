@@ -39,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Resource
     private AccountService accountService;
     @Resource
-    private IdService IdService;
+    private IdService idService;
 
     @Override
     public long userRegister(String userName, String userPassword, String checkPassword) {
@@ -49,7 +49,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         checkPassword(userPassword, checkPassword);
         // TODO: 2024/1/12 修改账号生成算法
 //        long account = new IdUtil(1, 1).nextId(); //目前写死状态
-         long account = IdService.nextId(); //目前写死状态
+         long account = idService.nextId(); //目前写死状态
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         User user = new User();
         user.setUserName(userName);

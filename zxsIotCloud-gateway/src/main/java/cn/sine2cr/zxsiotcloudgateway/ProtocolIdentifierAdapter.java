@@ -63,6 +63,12 @@ public class ProtocolIdentifierAdapter extends ByteToMessageDecoder {
         return ProtocolConstant.HTTP;
     }
 
+
+    /**
+     * 根据相应协议初始化通道
+     * @param protocol
+     * @param channelHandlerContext
+     */
     private void initChannel(String protocol, ChannelHandlerContext channelHandlerContext) {
         switch (protocol) {
             case ProtocolConstant.HTTP:

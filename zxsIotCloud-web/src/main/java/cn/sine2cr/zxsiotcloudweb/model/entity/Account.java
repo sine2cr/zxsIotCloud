@@ -46,7 +46,7 @@ public class Account implements Serializable {
     /**
      * 是否删除(0:正常,1:删除)
      */
-    @TableLogic(value = "1")
+    @TableLogic(value = "0")
     private Integer isDelete;
 
     /**

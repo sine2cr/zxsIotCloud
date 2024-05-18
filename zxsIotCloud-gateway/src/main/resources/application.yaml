@@ -10,12 +10,12 @@ spring:
     database: 0
 gateway:
   port: 12021
-dubbo:
-  application:
-    name: gateway
-  protocol:
-    name: dubbo
-    port: -1
-  registry:
-    id: ns-Registry
-    address: nacos://localhost:8848
+#dubbo:
+#  application:
+#    name: gateway
+#  protocol:
+#    name: dubbo
+#    port: -1
+#  registry:
+#    id: ns-Registry
+#    address: nacos://localhost:8848

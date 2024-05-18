@@ -2,7 +2,8 @@ package cn.sine2cr.zxsiotcloudgateway.service;
 
 import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
 import cn.sine2cr.zxsiotcloudcommon.exception.BusinessException;
-import cn.sine2cr.zxsiotcloudgateway.constant.RedisTypeConstant;
+import cn.sine2cr.zxsiotcloudcommon.constant.RedisKeyConstant;
+import cn.sine2cr.zxsiotcloudcommon.model.vo.DeviceInfoVO;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -21,28 +22,41 @@ public class RedisService {
     public RedisTemplate<String, Object> redisObjectTemplate;
     @Resource
     public RedisTemplate<String, String> redisStringTemplate;
-// TODO: 2024/3/4 修改为一个中心Redis集群，维护缓存一致性，采用读穿的方式实现缓存一致性
-    // TODO: 2024/3/4 用户设备修改时如何维护缓存一致性业务
 
     /**
-     * 在redis中获取设备类型
+     * 在redis中获取设备对象
      *
      * @param deviceId
      * @return
      */
-    public String getDeviceType(String deviceId) {
+    public DeviceInfoVO getDevice(String deviceId) {
 
-        Object result = redisStringTemplate.opsForHash().get(RedisTypeConstant.REDIS_TYPE_KEY, deviceId);
+        Object result = redisObjectTemplate.opsForHash().get(RedisKeyConstant.REDIS_INFO_KEY, deviceId);
         if (result == null) {
             throw new BusinessException(ErrorCode.DATA_ERROR);
         }
-        //获取的字符串带有双引号，需要去掉
-        return  result.toString().substring(1,result.toString().length() - 1);
+        DeviceInfoVO r = (DeviceInfoVO) result;
+        return  r;
     }
 
+    /**
+     * 添加输入数据
+     * @param deviceId
+     * @param score
+     * @param data
+     * @return
+     */
     public boolean setDeviceData(String deviceId, double score, String data) {
         return Boolean.TRUE.equals(redisStringTemplate.opsForZSet().add(deviceId, data, score));
     }
+
+    /**
+     * 添加输入数据对象
+     * @param deviceId
+     * @param score
+     * @param data
+     * @return
+     */
     public boolean setDeviceData(String deviceId, double score, Object data) {
         return Boolean.TRUE.equals(redisObjectTemplate.opsForZSet().add(deviceId, data, score));
     }

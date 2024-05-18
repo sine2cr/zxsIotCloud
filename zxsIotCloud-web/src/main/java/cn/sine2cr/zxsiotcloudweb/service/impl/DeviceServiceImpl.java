@@ -35,6 +35,8 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device>
         if (device == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "业务参数异常");
         }
+        long id = idService.nextId();
+        device.setDeviceId(id);
         accountService.updateDeviceCount(device.getAccount(), 1);
         return this.save(device) ? device.getDeviceId() : 0;
     }

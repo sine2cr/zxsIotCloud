@@ -1,10 +1,14 @@
 package cn.sine2cr.zxsiotcloudgateway.handler.http;
 
 
-import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
-import cn.sine2cr.zxsiotcloudcommon.exception.BusinessException;
-import cn.sine2cr.zxsiotcloudcommon.model.entity.DefaultTransducer;
-import cn.sine2cr.zxsiotcloudgateway.constant.DeviceTypeConstant;
+
+
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.crypto.symmetric.SymmetricCrypto;
+import cn.sine2cr.zxsiotcloudcommon.model.entity.InputDataEntity;
+import cn.sine2cr.zxsiotcloudcommon.model.vo.DeviceInfoVO;
 import cn.sine2cr.zxsiotcloudgateway.service.RedisService;
 import cn.sine2cr.zxsiotcloudgateway.util.SpringContextUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,7 +19,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpRequest;
 
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class HttpReceiver extends ChannelInboundHandlerAdapter {
     private final RedisService redisService = SpringContextUtil.getBean(RedisService.class);
@@ -25,33 +31,34 @@ public class HttpReceiver extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof HttpRequest) {
             HttpContent message = (HttpContent) msg;
-            String json = message.content().toString(StandardCharsets.UTF_8);
-            DefaultTransducer defaultTransducer;
-            String deviceType;
-            //判断设备类型
+            String inputStr = message.content().toString(StandardCharsets.UTF_8);
             try {
-                defaultTransducer = jsonParse(json, DefaultTransducer.class);
-                deviceType = redisService.getDeviceType(defaultTransducer.getDeviceId());
-                switch (deviceType) {
-                    case DeviceTypeConstant.TEMPERATURE:
-                        httpHandler.temperatureTransducerHandler(ctx, json);
-                        break;
-                    case DeviceTypeConstant.HUMIDITY:
-                        httpHandler.humidityTransducerHandler(ctx, json);
-                        break;
-                    default:
-                        throw new BusinessException(ErrorCode.DATA_ERROR);
+                InputDataEntity inputData = jsonParse(inputStr, InputDataEntity.class);
+
+                DeviceInfoVO device = redisService.getDevice(inputData.getDeviceId());
+                //签名认证算法
+                String fingerprint = device.getFingerprint();
+                String signature = inputData.getSignature();
+                SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, fingerprint.getBytes());
+                //解码传输数据为字符串形式
+                String data = aes.decryptStr(inputData.getData() , CharsetUtil.CHARSET_UTF_8);
+                //二次签名
+                String serverSignature = SecureUtil.md5(device.getDeviceId() + data + fingerprint);
+                if(serverSignature.equals(signature)){
+
+                    if (device.getProxyIp()!=null){
+                        httpHandler.proxy(device.getProxyIp(), String.valueOf(device.getProxyPort()),data);
+                    }else{
+                        httpHandler.saveToRedis(ctx,inputData);
+                    }
+                }else{
+                    MessageSender.fail(ctx);
                 }
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
-                ctx.channel().writeAndFlush(HttpResponse.failResponse(ErrorCode.TRANSDUCER_DATA_ERROR.getMessage()));
-                throw new BusinessException(ErrorCode.HTTP_ERROR);
-            } catch (Exception e) {
-                e.printStackTrace();
-                ctx.channel().writeAndFlush(HttpResponse.failResponse(ErrorCode.TRANSDUCER_DATA_ERROR.getMessage()));
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR);
+                MessageSender.fail(ctx);
+                throw new RuntimeException(e);
             }
-           MessageSender.success(ctx);
+            MessageSender.success(ctx);
         }
     }
 

@@ -35,6 +35,12 @@ public class Device implements Serializable {
     private Long deviceId;
 
     /**
+     * 设备指纹
+     */
+
+    private String fingerprint;
+
+    /**
      * 设备名称
      */
 
@@ -70,6 +76,16 @@ public class Device implements Serializable {
      * 设备端口
      */
     private Integer port;
+
+    /**
+     * 设备转发ip地址
+     */
+    private String proxyIp;
+
+    /**
+     * 设备转发端口号
+     */
+    private Integer proxyPort;
 
     /**
      * 设备状态(0:正常状态,1:禁用状态)

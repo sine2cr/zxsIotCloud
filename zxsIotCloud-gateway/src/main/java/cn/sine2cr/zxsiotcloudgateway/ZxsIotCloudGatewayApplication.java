@@ -4,7 +4,6 @@ package cn.sine2cr.zxsiotcloudgateway;
 import cn.sine2cr.zxsiotcloudcommon.util.ComputerInfoUtil;
 import cn.sine2cr.zxsiotcloudgateway.util.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Slf4j
-@EnableDubbo
+//@EnableDubbo
 @EnableScheduling
 @SpringBootApplication
 public class ZxsIotCloudGatewayApplication {

@@ -2,13 +2,13 @@ server:
   port: 12020
 spring:
   application:
-    name: userBackend
+    name: WebBackend
   banner:
     location: banner.txt
     charset: UTF-8
   mvc:
     servlet:
-      path: /userBackend
+      path: /WebBackend
   profiles:
     active: dev
 mybatis-plus:
@@ -22,15 +22,26 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
-dubbo:
-  application:
-    name: userBackend
-  protocol:
-    name: dubbo
-    port: -1
-  registry:
-    id: ns-Registry
-    address: nacos://localhost:8848
-
+#dubbo:
+#  application:
+#    name: userBackend
+#  protocol:
+#    name: dubbo
+#    port: -1
+#  registry:
+#    id: ns-Registry
+#    address: nacos://localhost:8848
+knife4j:
+  enable: true
+  openapi:
+    title: 湘思物联网云平台
+    description: "湘思物联网云平台官方API文档"
+    email: sine2cr@163.com
+    concat: sine2cr
+    url: https://docs.xiaominfo.com
+    version: v1.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
 
 
