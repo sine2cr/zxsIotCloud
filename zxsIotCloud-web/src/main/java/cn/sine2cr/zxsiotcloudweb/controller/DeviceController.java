@@ -32,16 +32,16 @@ public class DeviceController {
         return ResponseUtil.success(deviceService.deviceRegister(device));
     }
     @PostMapping("/delete")
-    public BaseResponse<Long> deviceDelete(@RequestBody DeviceDeleteRequest deviceDeleteRequest){
+    public BaseResponse<Boolean> deviceDelete(@RequestBody DeviceDeleteRequest deviceDeleteRequest){
         Device device = new Device();
         BeanUtils.copyProperties(deviceDeleteRequest,device);
-        return ResponseUtil.success(deviceService.deviceRegister(device));
+        return ResponseUtil.success(deviceService.delDevice(device.getAccount(),device.getDeviceId()));
     }
     @PostMapping("/update")
-    public BaseResponse<Long> deviceUpdate(@RequestBody DeviceUpdateRequest deviceUpdateRequest){
+    public BaseResponse<Boolean> deviceUpdate(@RequestBody DeviceUpdateRequest deviceUpdateRequest){
         Device device = new Device();
         BeanUtils.copyProperties(deviceUpdateRequest,device);
-        return ResponseUtil.success(deviceService.deviceRegister(device));
+        return ResponseUtil.success(deviceService.updateDevice(device.getAccount(),device.getDeviceId(),device));
     }
 //    @GetMapping("/list")
 //    public BaseResponse<List<DeviceVO>> deviceList(@RequestBody DeviceUpdateRequest deviceUpdateRequest){
