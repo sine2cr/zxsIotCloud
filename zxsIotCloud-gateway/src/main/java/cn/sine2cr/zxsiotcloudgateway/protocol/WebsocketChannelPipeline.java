@@ -8,6 +8,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrameAggregator;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 
 /**
+ * WS协议初始化器
  * @author Sine2cr
  * @Date 2024/2/20
  * @Mail sine2cr@163.com

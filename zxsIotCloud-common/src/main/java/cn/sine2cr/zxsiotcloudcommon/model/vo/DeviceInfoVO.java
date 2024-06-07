@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 设备信息视图
  * @author Sine2cr
  * @Date 2024/5/2
  * @Mail sine2cr@163.com

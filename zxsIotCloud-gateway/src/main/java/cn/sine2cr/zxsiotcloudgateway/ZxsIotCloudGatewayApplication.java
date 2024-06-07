@@ -25,7 +25,9 @@ public class ZxsIotCloudGatewayApplication {
         int port = Integer.parseInt(Objects.requireNonNull(environment.getProperty("gateway.port")));
         log.info("网关外网地址:https://" + ComputerInfoUtil.getIpAddr() + ":" + port);
         log.info("网关内网地址:https://127.0.0.1:" + port);
+        //设置Spring上下文
         SpringContextUtil.setApplicationContext(context);
+        //启动Netty服务器，启动网关服务
         new Server(port).start();
     }
 

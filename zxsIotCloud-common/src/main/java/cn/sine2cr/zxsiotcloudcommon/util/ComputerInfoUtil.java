@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*
+
+/**
+ * 获取服务器信息工具类
+ *
  * <取网卡物理地址--
  * 1.在Windows,Linux系统下均可用；
  * 2.通过ipconifg,ifconfig获得计算机信息；

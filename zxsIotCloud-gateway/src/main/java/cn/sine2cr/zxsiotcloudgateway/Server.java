@@ -8,6 +8,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
+ * Netty服务启动类
+ *
  * @author Sine2cr
  * @Date 2024/2/21
  * @Mail sine2cr@163.com
@@ -20,6 +22,10 @@ public class Server {
         this.port = port;
     }
 
+    /**
+     * 网关启动方法
+     * 可用于扩展多种启动方式
+     */
     public void start()  {
         EventLoopGroup bossGroup = new NioEventLoopGroup(2);
         EventLoopGroup workerGroup = new NioEventLoopGroup(8);

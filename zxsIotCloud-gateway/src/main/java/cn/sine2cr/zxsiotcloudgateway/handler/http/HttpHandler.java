@@ -7,6 +7,7 @@ import cn.sine2cr.zxsiotcloudgateway.util.SpringContextUtil;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
+ * Http协议处理器
  * @author Sine2cr
  * @Date 2024/2/24
  * @Mail sine2cr@163.com

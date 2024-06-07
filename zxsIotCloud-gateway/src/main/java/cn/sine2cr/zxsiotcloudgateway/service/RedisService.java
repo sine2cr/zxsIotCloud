@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
+ * Redis服务类
  * @author Sine2cr
  * @Date 2024/2/24
  * @Mail sine2cr@163.com
