@@ -19,13 +19,8 @@
 ```bash
 git clone https://github.com/sine2cr/zxsIotCloud.git
 ```
-2. maven 打包
 
-```bash
-mvn clean package -Dmaven.test.skip=true
-```
-
-3. 环境准备
+2. 环境准备
 
 JDK 1.8+
 
@@ -35,6 +30,21 @@ Redis 6.2+
 
 mysql 5.7+
 
+3. 打包
+
+```bash
+mvn clean package -Dmaven.test.skip=true
+```
+
+4. 运行
+
+```bash
+bin/start.sh
+```
+
+```shell
+bin/start.cmd
+```
 
 
 
@@ -49,7 +59,6 @@ mysql 5.7+
 - [ ] 本地网关接入
 - [ ] 设备发现
 - [ ] 设备配置
-- [ ]
 
 云平台
 - [ ] 数据分析
