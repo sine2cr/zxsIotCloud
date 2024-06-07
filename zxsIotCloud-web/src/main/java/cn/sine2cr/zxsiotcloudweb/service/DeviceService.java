@@ -13,7 +13,7 @@ public interface DeviceService extends IService<Device> {
 
     boolean delDevice(long accountId,  long deviceId);
 
-    boolean modifyDevice(long accountId,  long deviceId, Device device);
+    boolean updateDevice(long accountId,  long deviceId, Device device);
 
 //    List<DeviceTypeVO> listType();
 }

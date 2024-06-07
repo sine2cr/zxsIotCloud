@@ -5,6 +5,7 @@ import cn.sine2cr.zxsiotcloudcommon.common.BaseResponse;
 import cn.sine2cr.zxsiotcloudcommon.common.ErrorCode;
 
 /**
+ * 通用信息返回工具类
  * @author Sine2cr
  * @Date 2024/1/11
  * @Mail sine2cr@163.com

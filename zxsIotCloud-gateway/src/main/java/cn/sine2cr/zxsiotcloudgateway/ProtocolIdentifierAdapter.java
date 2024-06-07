@@ -18,6 +18,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * 协议适配器
+ *
  * @author Sine2cr
  * @Date 2024/2/18
  * @Mail sine2cr@163.com
@@ -27,13 +29,25 @@ public class ProtocolIdentifierAdapter extends ByteToMessageDecoder {
 
     private static final List<String> keys = Arrays.asList("HTTP","Upgrade: websocket");
 
+    /**
+     * 读取请求字节 buffer
+     *
+     * @param channelHandlerContext
+     * @param byteBuf
+     * @param list
+     * @throws Exception
+     */
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
+        //将接受的字节buffer交给协议解析器
         String protocol = protocolParse(byteBuf);
+        //根据解析的协议进行通道初始化操作
         initChannel(protocol, channelHandlerContext);
+        //重放数据
         ByteBuf out = byteBuf.retainedDuplicate();
         list.add(out);
         byteBuf.skipBytes(byteBuf.readableBytes());
+        //移除协议适配器
         channelHandlerContext.pipeline().remove(ProtocolIdentifierAdapter.class);
     }
 

@@ -9,6 +9,7 @@ import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 
 /**
+ * Http协议通道初始化器
  * @author Sine2cr
  * @Date 2024/2/20
  * @Mail sine2cr@163.com

@@ -19,10 +19,14 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.HttpContent;
 import io.netty.handler.codec.http.HttpRequest;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
+import java.nio.charset.StandardCharsets;
+
+
+/**
+ * Http协议数据接收器
+ * @author sine2cr
+ */
 public class HttpReceiver extends ChannelInboundHandlerAdapter {
     private final RedisService redisService = SpringContextUtil.getBean(RedisService.class);
 

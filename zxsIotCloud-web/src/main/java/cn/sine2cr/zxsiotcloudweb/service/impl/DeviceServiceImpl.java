@@ -53,7 +53,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device>
     }
 
     @Override
-    public boolean modifyDevice(long accountId, long deviceId, Device device) {
+    public boolean updateDevice(long accountId, long deviceId, Device device) {
         if (accountId == 0 || deviceId == 0 || device == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "业务参数异常");
         }

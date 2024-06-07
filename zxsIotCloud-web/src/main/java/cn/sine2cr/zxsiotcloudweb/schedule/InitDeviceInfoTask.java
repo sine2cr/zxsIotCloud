@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 初始化设备信息到Redis
  * @author Sine2cr
  * @Date 2024/5/2
  * @Mail sine2cr@163.com
